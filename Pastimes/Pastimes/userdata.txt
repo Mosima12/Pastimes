@@ -1,0 +1,5 @@
+John Doe	j.doe@abc.co.za	29ef52e7563626a96cea7f4b4085c124	verified
+Jane Smith	j.smith@gmail.com	d8578edf8458ce06fbc5bb76a58c5ca4	verified
+Thabo Nkosi	t.nkosi@webmail.co.za	5f4dcc3b5aa765d61d8327deb882cf99	verified
+Lerato Mokoena	l.mokoena@outlook.com	e10adc3949ba59abbe56e057f20f883e	verified
+Sipho Dlamini	s.dlamini@icloud.com	25f9e794323b453885f5181f1b624d0b	pending

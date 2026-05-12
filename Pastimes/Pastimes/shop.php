@@ -1,31 +1,22 @@
 <?php
-// shop.php - Fixed session and table issues
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require_once 'DBConn.php';
 
-// Helper function to get product image
-function getProductImage($imageURL, $category) {
-    if (!empty($imageURL) && file_exists($imageURL)) {
-        return $imageURL;
-    }
-    return null;
-}
-
 $loggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'];
 $userName = $loggedIn ? htmlspecialchars($_SESSION['user_name']) : '';
 
-// ── Filters from GET ──────────────────────────────────────────────────────────
+
 $search   = trim($_GET['search']   ?? '');
 $category = trim($_GET['category'] ?? '');
 $size     = trim($_GET['size']     ?? '');
 $sort     = trim($_GET['sort']     ?? 'newest');
 
-// ── FIRST, CHECK IF TABLE EXISTS AND CREATE IT IF NOT ──
+
 $tableCheck = mysqli_query($conn, "SHOW TABLES LIKE 'tblclothes'");
 if (mysqli_num_rows($tableCheck) == 0) {
-    // Create tblclothes table
     $createTableSQL = "
     CREATE TABLE IF NOT EXISTS tblclothes (
         ClothesID INT AUTO_INCREMENT PRIMARY KEY,
@@ -46,7 +37,6 @@ if (mysqli_num_rows($tableCheck) == 0) {
 
 // ── Build query ───────────────────────────────────────────────────────────────
 $where  = ["1=1"];
-$params = [];
 
 if ($search) {
     $s = mysqli_real_escape_string($conn, $search);
@@ -76,7 +66,6 @@ $sql = "SELECT c.*, u.FullName AS SellerName
 
 $result = mysqli_query($conn, $sql);
 
-// Check if query failed (table might be empty but exists)
 if (!$result) {
     $products = [];
 } else {
@@ -116,7 +105,6 @@ if ($catResult) {
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--charcoal); min-height: 100vh; }
 
-  /* ── Nav ── */
   nav {
     background: var(--card-bg);
     border-bottom: 1px solid var(--border);
@@ -136,7 +124,6 @@ if ($catResult) {
   .btn-nav { padding: 0.45rem 1rem; background: var(--rust); color: #fff !important; border-radius: 7px; font-size: 0.85rem !important; }
   .btn-nav:hover { background: var(--rust-hover); }
 
-  /* ── Page header ── */
   .page-header {
     max-width: 1100px;
     margin: 2.5rem auto 0;
@@ -149,7 +136,6 @@ if ($catResult) {
   }
   .page-header p { color: var(--muted); font-size: 0.9rem; }
 
-  /* ── Search bar ── */
   .search-bar {
     max-width: 1100px;
     margin: 1.5rem auto 0;
@@ -185,7 +171,6 @@ if ($catResult) {
   }
   .search-wrap button:hover { background: var(--rust-hover); }
 
-  /* ── Filters ── */
   .filters {
     max-width: 1100px;
     margin: 1rem auto 0;
@@ -220,7 +205,6 @@ if ($catResult) {
   }
   .clear-link:hover { text-decoration: underline; }
 
-  /* ── Product grid ── */
   .grid-wrap {
     max-width: 1100px;
     margin: 1.5rem auto 4rem;
@@ -228,11 +212,10 @@ if ($catResult) {
   }
   .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-    gap: 1.2rem;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
   }
 
-  /* ── Product card ── */
   .product-card {
     background: var(--card-bg);
     border: 1px solid var(--border);
@@ -254,15 +237,6 @@ if ($catResult) {
     display: block;
     background: #EDE8E2;
   }
-  .product-img-placeholder {
-    width: 100%;
-    height: 220px;
-    background: #EDE8E2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3.5rem;
-  }
   .product-info { padding: 1rem; }
   .product-meta {
     display: flex;
@@ -279,12 +253,9 @@ if ($catResult) {
     border: 1px solid var(--border);
   }
   .product-name {
-    font-size: 0.92rem;
-    font-weight: 500;
+    font-size: 0.95rem;
+    font-weight: 600;
     margin-bottom: 0.2rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
   .product-brand {
     font-size: 0.8rem;
@@ -297,16 +268,15 @@ if ($catResult) {
     justify-content: space-between;
   }
   .product-price {
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 1.1rem;
+    font-weight: 700;
     color: var(--rust);
   }
   .seller-name {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: var(--muted);
   }
 
-  /* ── Empty state ── */
   .empty {
     grid-column: 1 / -1;
     text-align: center;
@@ -328,27 +298,6 @@ if ($catResult) {
     border-radius: 7px;
     text-decoration: none;
     font-size: 0.9rem;
-  }
-
-  /* Image instruction box */
-  .image-instructions {
-    background: #FFF8E1;
-    border-left: 4px solid #F57F17;
-    border-radius: 8px;
-    padding: 15px 20px;
-    margin: 20px auto;
-    max-width: 1100px;
-    font-family: monospace;
-    font-size: 13px;
-  }
-  .image-instructions h4 {
-    color: #E65100;
-    margin-bottom: 10px;
-  }
-  .image-instructions code {
-    background: #fff;
-    padding: 2px 5px;
-    border-radius: 4px;
   }
 </style>
 </head>
@@ -400,7 +349,6 @@ if ($catResult) {
           <?= htmlspecialchars(ucfirst($cat)) ?>
         </option>
       <?php endforeach; ?>
-      <!-- Defaults if DB empty -->
       <?php if (empty($categories)): ?>
         <option value="tops"    <?= $category==='tops'    ? 'selected':'' ?>>Tops</option>
         <option value="bottoms" <?= $category==='bottoms' ? 'selected':'' ?>>Bottoms</option>
@@ -431,9 +379,7 @@ if ($catResult) {
   </div>
 </form>
 
-<!-- ================================================ -->
-<!-- PRODUCT GRID WITH IMAGES 1-10                    -->
-<!-- ================================================ -->
+<!-- PRODUCT GRID - SHOWS ACTUAL IMAGES FROM DATABASE -->
 <div class="grid-wrap">
   <div class="product-grid">
     <?php if (empty($products)): ?>
@@ -451,20 +397,17 @@ if ($catResult) {
       <?php foreach ($products as $p): ?>
         <a class="product-card" href="product.php?id=<?= $p['ClothesID'] ?>">
           <?php 
+          // CHECK IF PRODUCT HAS AN IMAGE IN DATABASE
           $hasImage = !empty($p['ImageURL']) && file_exists($p['ImageURL']);
+          
           if ($hasImage): 
           ?>
+            <!-- SHOW ACTUAL IMAGE FROM DATABASE -->
             <img class="product-img" src="<?= htmlspecialchars($p['ImageURL']) ?>" alt="<?= htmlspecialchars($p['ItemName']) ?>">
           <?php else: ?>
-            <div class="product-img-placeholder">
-              <?= match(strtolower($p['Category'] ?? '')) {
-                'tops','shirts'  => '👚',
-                'bottoms','jeans'=> '👖',
-                'dresses'        => '👗',
-                'shoes'          => '👟',
-                'jackets','coats'=> '🧥',
-                default          => '🛍️'
-              } ?>
+            <!-- NO IMAGE - SHOW COLORED PLACEHOLDER WITH PRODUCT NAME -->
+            <div class="product-img" style="background: #EDE8E2; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #999;">
+              <?= strtoupper(substr($p['ItemName'], 0, 2)) ?>
             </div>
           <?php endif; ?>
           <div class="product-info">
@@ -488,7 +431,6 @@ if ($catResult) {
     <?php endif; ?>
   </div>
 </div>
-    
 
 </body>
 </html>

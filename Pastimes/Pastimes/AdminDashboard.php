@@ -15,9 +15,6 @@ require_once 'DBConn.php';
 $message = '';
 $error = '';
 
-// ============================================
-// HANDLE ALL ADMIN ACTIONS
-// ============================================
 
 // 1. VERIFY NEW CUSTOMER (pending -> verified)
 if (isset($_POST['action']) && $_POST['action'] === 'verify') {

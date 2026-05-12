@@ -1,0 +1,60 @@
+CREATE TABLE tbluser (
+  UserID       INT           NOT NULL AUTO_INCREMENT,
+  FullName     VARCHAR(100)  NOT NULL,
+  Email        VARCHAR(150)  NOT NULL,
+  PasswordHash VARCHAR(255)  NOT NULL,
+  Status       ENUM('pending','verified') DEFAULT 'pending',
+  CreatedAt    TIMESTAMP     DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (UserID),
+  UNIQUE KEY uq_email (Email)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Seed data from userdata.txt (passwords are MD5-hashed)
+INSERT INTO tbluser (FullName, Email, PasswordHash, Status) VALUES
+('John Doe',       'j.doe@abc.co.za',        '29ef52e7563626a96cea7f4b4085c124', 'verified'),
+('Jane Smith',     'j.smith@gmail.com',       'd8578edf8458ce06fbc5bb76a58c5ca4', 'verified'),
+('Thabo Nkosi',    't.nkosi@webmail.co.za',   '5f4dcc3b5aa765d61d8327deb882cf99', 'verified'),
+('Lerato Mokoena', 'l.mokoena@outlook.com',   'e10adc3949ba59abbe56e057f20f883e', 'verified'),
+('Sipho Dlamini',  's.dlamini@icloud.com',    '25f9e794323b453885f5181f1b624d0b', 'pending');
+
+
+CREATE TABLE tblclothes (
+  ClothesID   INT            NOT NULL AUTO_INCREMENT,
+  SellerID    INT            NOT NULL,
+  ItemName    VARCHAR(150)   NOT NULL,
+  Brand       VARCHAR(100)   DEFAULT NULL,
+  Category    ENUM('tops','bottoms','dresses','jackets','shoes','accessories','other') NOT NULL,
+  ClothesSize ENUM('XS','S','M','L','XL','XXL')  DEFAULT NULL,
+  Condition   ENUM('New','Like new','Good','Fair') DEFAULT NULL,
+  Price       DECIMAL(10,2)  NOT NULL,
+  Description TEXT           DEFAULT NULL,
+  ImageURL    VARCHAR(300)   DEFAULT NULL,
+  DateListed  DATE           DEFAULT (CURDATE()),
+  CreatedAt   TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (ClothesID),
+  CONSTRAINT fk_seller FOREIGN KEY (SellerID)
+    REFERENCES tbluser (UserID)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+INSERT INTO tblclothes (SellerID, ItemName, Brand, Category, ClothesSize, Condition, Price, Description, ImageURL, DateListed) VALUES
+(1, 'Vintage Denim Jacket',  'Levi\'s',    'jackets',     'M',  'Good',     350.00, 'Classic 90s cut, some natural fading on the cuffs. No tears.',          'uploads/19467797_43332867_1000.webp', CURDATE()),
+(2, 'White Sneakers',        'Nike',       'shoes',       'L',  'Like new', 650.00, 'Worn twice. Still have the box.',                                       'uploads/A87010007-front-pdp-ld.jpg',  CURDATE()),
+(3, 'Floral Summer Dress',   NULL,         'dresses',     'S',  'Good',     220.00, 'Lightweight cotton blend, perfect for Joburg summers.',                  'uploads/download.webp',              CURDATE()),
+(1, 'Oversized Hoodie',      'Adidas',     'tops',        'XL', 'Fair',     180.00, 'Pilling under the arms, otherwise great condition.',                    'uploads/img_69f79d420ab5c.webp',      CURDATE());
+
+
+CREATE TABLE tbladmin (
+  AdminID      INT          NOT NULL AUTO_INCREMENT,
+  Username     VARCHAR(80)  NOT NULL,
+  PasswordHash VARCHAR(255) NOT NULL,
+  CreatedAt    TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (AdminID),
+  UNIQUE KEY uq_admin_username (Username)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Default admin: username = admin | password = admin123 (MD5)
+INSERT INTO tbladmin (Username, PasswordHash) VALUES
+('admin', '0192023a7bbd73250516f069df18b500');

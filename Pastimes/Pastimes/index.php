@@ -1,5 +1,5 @@
 <?php
-// index.php – Pastimes homepage with IMAGES
+
 session_start();
 $loggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'];
 $userName = $loggedIn ? htmlspecialchars($_SESSION['user_name']) : '';
@@ -236,22 +236,18 @@ $userName = $loggedIn ? htmlspecialchars($_SESSION['user_name']) : '';
   </div>
   
   <div class="hero-visual">
-    <!-- HERO MAIN LARGE IMAGE - REPLACE 'hero-large.jpg' WITH YOUR IMAGE FILE NAME -->
-    <div class="hero-img">
       <img src="images/hero-large.jpg" alt="Sustainable vintage fashion" onerror="this.src='https://placehold.co/600x600/EDE8E2/999?text=Add+hero-large.jpg'">
     </div>
-    <!-- HERO SMALL IMAGE 1 - REPLACE 'hero-small-1.jpg' WITH YOUR IMAGE FILE NAME -->
     <div class="hero-img">
       <img src="images/hero-small-1.jpg" alt="Vintage handbag" onerror="this.src='https://placehold.co/300x300/EDE8E2/999?text=Add+hero-small-1.jpg'">
     </div>
-    <!-- HERO SMALL IMAGE 2 - REPLACE 'hero-small-2.jpg' WITH YOUR IMAGE FILE NAME -->
     <div class="hero-img">
       <img src="images/hero-small-2.jpg" alt="Happy thrift shopping" onerror="this.src='https://placehold.co/300x300/EDE8E2/999?text=Add+hero-small-2.jpg'">
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS SECTION -->
+
 <section class="how">
   <h2>How It Works</h2>
   <div class="how-steps">
@@ -273,7 +269,7 @@ $userName = $loggedIn ? htmlspecialchars($_SESSION['user_name']) : '';
   </div>
 </section>
 
-<!-- FEATURED PRODUCTS SECTION WITH IMAGES -->
+
 <section class="featured">
   <div class="section-header">
     <h2>Featured Items</h2>
@@ -281,7 +277,6 @@ $userName = $loggedIn ? htmlspecialchars($_SESSION['user_name']) : '';
   </div>
   <div class="product-grid">
     
-    <!-- PRODUCT 1: Vintage Jeans - REPLACE 'product1.jpg' WITH YOUR IMAGE -->
     <div class="product-card" onclick="window.location.href='shop.php'">
       <div class="product-img">
         <img src="images/product1.jpg" alt="Vintage Levi's 501 Jeans" onerror="this.src='https://placehold.co/400x400/EDE8E2/999?text=👖+Jeans'">
@@ -292,7 +287,7 @@ $userName = $loggedIn ? htmlspecialchars($_SESSION['user_name']) : '';
       </div>
     </div>
     
-    <!-- PRODUCT 2: Floral Blouse - REPLACE 'product2.jpg' WITH YOUR IMAGE -->
+    
     <div class="product-card" onclick="window.location.href='shop.php'">
       <div class="product-img">
         <img src="images/product2.jpg" alt="Silk Floral Blouse" onerror="this.src='https://placehold.co/400x400/EDE8E2/999?text=👚+Blouse'">
@@ -303,7 +298,7 @@ $userName = $loggedIn ? htmlspecialchars($_SESSION['user_name']) : '';
       </div>
     </div>
     
-    <!-- PRODUCT 3: Wool Coat - REPLACE 'product3.jpg' WITH YOUR IMAGE -->
+    
     <div class="product-card" onclick="window.location.href='shop.php'">
       <div class="product-img">
         <img src="images/product3.jpg" alt="Wool Overcoat" onerror="this.src='https://placehold.co/400x400/EDE8E2/999?text=🧥+Coat'">
@@ -314,7 +309,7 @@ $userName = $loggedIn ? htmlspecialchars($_SESSION['user_name']) : '';
       </div>
     </div>
     
-    <!-- PRODUCT 4: Black Dress - REPLACE 'product4.jpg' WITH YOUR IMAGE -->
+    
     <div class="product-card" onclick="window.location.href='shop.php'">
       <div class="product-img">
         <img src="images/product4.jpg" alt="Black Midi Dress" onerror="this.src='https://placehold.co/400x400/EDE8E2/999?text=👗+Dress'">

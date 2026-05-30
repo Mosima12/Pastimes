@@ -1,5 +1,5 @@
 <?php
-// checkout.php - Complete checkout with order processing
+// checkout.php 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }

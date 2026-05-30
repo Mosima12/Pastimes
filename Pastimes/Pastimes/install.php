@@ -1,5 +1,5 @@
 <?php
-// install.php - Run this once to set up the database
+
 $host = 'localhost';
 $user = 'root';
 $pass = '';

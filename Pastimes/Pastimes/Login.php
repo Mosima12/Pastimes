@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 require_once 'DBConn.php';
 
-// Get redirect URL from query parameter
+
 $redirect = isset($_GET['redirect']) ? $_GET['redirect'] : 'index.php';
 
 $error = '';

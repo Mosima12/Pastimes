@@ -155,7 +155,7 @@ $users = mysqli_query($conn, "SELECT * FROM tbluser ORDER BY CreatedAt DESC");
             <button class="tab-btn" onclick="showTab('users')">Users</button>
         </div>
         
-        <!-- Products Tab -->
+      
         <div id="productsTab" class="tab-content active">
             <div class="card">
                 <h3>Add New Product</h3>
@@ -197,7 +197,7 @@ $users = mysqli_query($conn, "SELECT * FROM tbluser ORDER BY CreatedAt DESC");
             </div>
         </div>
         
-        <!-- Users Tab -->
+        
         <div id="usersTab" class="tab-content">
             <div class="card">
                 <h3>Add New Customer</h3>
@@ -254,4 +254,4 @@ $users = mysqli_query($conn, "SELECT * FROM tbluser ORDER BY CreatedAt DESC");
     }
     </script>
 </body>
-</html>S
+</html>

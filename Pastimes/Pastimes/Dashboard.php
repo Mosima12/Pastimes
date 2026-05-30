@@ -1,17 +1,17 @@
 <?php
-// dashboard.php - Fixed user dashboard
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require_once 'DBConn.php';
 
-// Check if user is logged in
+
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     header("Location: login.php");
     exit();
 }
 
-// Get user ID from session
+
 $userId = isset($_SESSION['user_id']) ? (int) $_SESSION['user_id'] : 0;
 
 if ($userId == 0) {
@@ -249,7 +249,7 @@ $user = mysqli_fetch_assoc($result);
     </div>
 </nav>
 
-<!-- "User X is logged in" string as required by assignment -->
+
 <div class="logged-in-banner">
     User <?= htmlspecialchars($user['FullName'] ?? 'User') ?> is logged in
 </div>

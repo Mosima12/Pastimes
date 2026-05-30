@@ -1,5 +1,5 @@
 <?php
-// ShoppingCart.php - Complete Shopping Cart Class for POE
+
 class ShoppingCart {
     private $cart;
     

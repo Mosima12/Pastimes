@@ -29,7 +29,7 @@ if ($dbReady) {
     }
 }
 
-// Get statistics for counters
+
 $productCount = 0;
 $userCount = 0;
 if ($dbReady) {
@@ -136,9 +136,7 @@ if (isset($_SESSION['cart'])) {
             color: white;
         }
         
-        /* ============================================ */
-        /* NAVIGATION - Modern Sticky Nav
-        /* ============================================ */
+     
         nav {
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
@@ -258,9 +256,7 @@ if (isset($_SESSION['cart'])) {
             transition: all 0.3s ease;
         }
         
-        /* ============================================ */
-        /* HERO SECTION - Animated
-        /* ============================================ */
+      
         .hero {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -454,9 +450,7 @@ if (isset($_SESSION['cart'])) {
             transform: translateY(0);
         }
         
-        /* ============================================ */
-        /* FEATURED SECTION
-        /* ============================================ */
+        
         .featured {
             max-width: 1400px;
             margin: 5rem auto;
@@ -503,9 +497,7 @@ if (isset($_SESSION['cart'])) {
             display: inline-block;
         }
         
-        /* ============================================ */
-        /* PRODUCT GRID
-        /* ============================================ */
+      
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -613,9 +605,7 @@ if (isset($_SESSION['cart'])) {
             background: var(--rust);
         }
         
-        /* ============================================ */
-        /* CATEGORIES SECTION
-        /* ============================================ */
+       
         .categories {
             background: linear-gradient(135deg, var(--card-bg) 0%, var(--cream) 100%);
             padding: 5rem 5%;
@@ -661,9 +651,7 @@ if (isset($_SESSION['cart'])) {
             font-weight: 600;
         }
         
-        /* ============================================ */
-        /* TESTIMONIALS SECTION
-        /* ============================================ */
+        
         .testimonials {
             max-width: 1200px;
             margin: 5rem auto;
@@ -712,9 +700,7 @@ if (isset($_SESSION['cart'])) {
             border-top: 1px solid var(--border);
         }
         
-        /* ============================================ */
-        /* NEWSLETTER SECTION
-        /* ============================================ */
+      
         .newsletter {
             background: linear-gradient(135deg, var(--charcoal) 0%, #2a2a2a 100%);
             padding: 4rem 5%;
@@ -762,9 +748,7 @@ if (isset($_SESSION['cart'])) {
             background: var(--rust-dark);
         }
         
-        /* ============================================ */
-        /* FOOTER
-        /* ============================================ */
+       
         footer {
             background: var(--charcoal);
             color: #888;
@@ -852,9 +836,7 @@ if (isset($_SESSION['cart'])) {
             font-size: 0.8rem;
         }
         
-        /* ============================================ */
-        /* RESPONSIVE DESIGN
-        /* ============================================ */
+       
         @media (max-width: 1024px) {
             .hero {
                 gap: 2rem;
@@ -934,7 +916,7 @@ if (isset($_SESSION['cart'])) {
             }
         }
         
-        /* Loading Animation */
+        
         .loading-spinner {
             display: inline-block;
             width: 20px;
@@ -975,7 +957,7 @@ if (isset($_SESSION['cart'])) {
 </head>
 <body>
 
-<!-- Navigation -->
+
 <nav>
     <a href="index.php" class="logo">Pastimes</a>
     <div class="menu-toggle" onclick="toggleMenu()">
@@ -1222,13 +1204,11 @@ if (isset($_SESSION['cart'])) {
     </div>
 </footer>
 
-<!-- Toast Notification -->
+
 <div id="toast" class="toast"></div>
 
 <script>
-// ============================================
-// CART FUNCTIONS
-// ============================================
+
 let cart = JSON.parse(localStorage.getItem('pastimes_cart') || '[]');
 
 function addToCart(id, name, price, image) {
@@ -1318,7 +1298,7 @@ animateElements.forEach(el => {
 });
 </script>
 
-<!-- AOS Animation Library -->
+
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init({

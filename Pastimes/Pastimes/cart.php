@@ -1,5 +1,5 @@
 <?php
-// cart.php - Shopping cart page with full CSS
+// cart.php 
 session_start();
 ?>
 <!DOCTYPE html>
@@ -11,9 +11,8 @@ session_start();
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ============================================ */
-        /* CART PAGE SPECIFIC STYLES
-        /* ============================================ */
+    
+     
         * {
             margin: 0;
             padding: 0;

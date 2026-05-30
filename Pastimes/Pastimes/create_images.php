@@ -1,7 +1,7 @@
 <?php
-// create_images.php - Creates placeholder images
 
-// Create folders if they don't exist
+
+
 if (!is_dir('images')) {
     mkdir('images', 0777, true);
     echo "✅ Created 'images' folder<br>";
@@ -19,7 +19,7 @@ function createImage($filename, $text, $color) {
     
     $image = imagecreate($width, $height);
     
-    // Convert hex color to RGB
+   
     $r = hexdec(substr($color, 0, 2));
     $g = hexdec(substr($color, 2, 2));
     $b = hexdec(substr($color, 4, 2));
@@ -51,7 +51,7 @@ function createImage($filename, $text, $color) {
     echo "✅ Created: $filename<br>";
 }
 
-// Product images
+
 $products = [
     'images/jacket1.jpg' => ['Vintage Denim Jacket', '8B4513'],
     'images/dress1.jpg' => ['Floral Summer Dress', 'E75480'],

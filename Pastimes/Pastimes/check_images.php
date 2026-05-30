@@ -3,7 +3,7 @@ require_once 'DBConn.php';
 
 echo "<h2>Image Checker</h2>";
 
-// Get all products
+
 $result = mysqli_query($conn, "SELECT ClothesID, ItemName, ImageURL FROM tblclothes");
 
 echo "<table border='1' cellpadding='8'>";

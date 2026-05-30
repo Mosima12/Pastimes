@@ -1,5 +1,5 @@
 <?php
-// sell-request.php - Complete Seller Request Page
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
